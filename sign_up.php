@@ -2,12 +2,6 @@
 include 'common.php';
 session_start();
 
-print_r($_SESSION);
-
-$_SESSION['test'] = 'hi';
-
-
-
 if (isset($_POST['username'])) {
 	
 	if ($_POST['username']=='' or $_POST['password']==''or $_POST['class1']=='' or $_POST['class2']==''){
@@ -24,9 +18,6 @@ if (isset($_POST['username'])) {
 	$class1 = mysql_real_escape_string($_POST['class1']);
 
 	$class2 = mysql_real_escape_string($_POST['class2']);
-
-	$password = sha1($password);
-
 	$query = "SELECT COUNT(*) FROM users WHERE username='$username'";
 
 	$result = mysql_query($query) or die('bad query');
@@ -55,9 +46,8 @@ if (isset($_POST['username'])) {
 		$query3 = "INSERT INTO UserAndClasses (username,class) VALUES ('$username','$class2')";
 
 		$result = mysql_query($query3) or die(mysql_error());
-		
-		echo "Registration was successful!! ";
-		echo '<a href="validate.php">Login here! </a> ';
+	
+		header('location: index.php');
 	}
 
 }
@@ -70,6 +60,7 @@ if (isset($_POST['username'])) {
 	<head></head>
 
 	<body>
+		<p>Welcome to "dwam"!! Please choose a Username and Password :) </p>
 
 		<form action="sign_up.php" method="post">
 

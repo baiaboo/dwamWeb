@@ -1,56 +1,69 @@
-
 <?php
-include 'validate.php';
+include_once 'common.php';
+include_once 'db.php';
+session_start();
+
+ini_set('display_errors',1);
+error_reporting(E_ALL);
+
+if (isset($_POST['username'])){
+	
+	//$username = isset($_POST['username']) ? mysql_real_escape_string($_POST['username']) : $_SESSION['username'];
+	//$password = isset($_POST['password']) ? mysql_real_escape_string($_POST['password']) : $_SESSION['password'];
+	
+	if ($_POST['username']=='' or $_POST['password']==''){
+		error('One or more required fields were left blank.\\n'.
+		'Please fill them in and try again.');
+	}
+	
+	$username = mysql_real_escape_string($_POST['username']);
+	$password = mysql_real_escape_string($_POST['password']);
+	
+	$query = "SELECT * FROM users WHERE username='$username'";
+	$result = mysql_query($query)  or die(mysql_error());
+	
+	//to check if the username exists:
+	if (mysql_num_rows($result)<1){
+		error("Please enter a valid username!!");
+	}
+	
+	//check if the password is correct:
+	$row = mysql_fetch_array($result) or die(mysql_error());
+	$passwordFromQuery = $row['password'];
+	if ($password == $passwordFromQuery){
+		$_SESSION['username']=$username;
+		header('location: home.php');
+	}else{
+		echo "oh no!!";
+		echo "u typed $password but in reality it is $passwordFromQuery";
+	}
+}
+
 ?>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>dwam Don't work alone @ MIT!</title>
-		<meta name="author" content="baiaboo" />
-		<!-- Date: 2012-01-16 -->
-		<link rel="stylesheet" type="text/css" href="style.css" media="screen"/>
+		<title> DWAM: Don't Work Alone @ MIT </title>
+		<link rel="stylesheet" type="text/css" href="index_style.css" />
 	</head>
 	<body>
-		<!-- top banner -->
-		<div id="topBanner">
-			<img src="images/Masthead.jpg" alt="dwam - don't work alone @MIT">
-			
-			<div id='bannerLinks'> Welcome, <?=$username?><a href='#'>  Logout</a></div>;			
-			
-		</div>
-		
-		<!-- navigation bar -->
-		<div id="navigationbar">
-			<ul>
-				<li><a href="#">Home</a></li>
-				<li><a href="createGroup.php">Create a group</a></li>
-				<li><a href="#">My Groups</a></li>
-				<li><a href="#">Find friends</a></li>
-			</ul> 
-		</div>
-		
-		<!-- left content/class menu -->
-		<div id="leftContent">
-			<ul>
-				<li><a href="#">6.004</a></li>
-				<li><a href="#">6.005</a></li>
-				<li><a href="#">6.006</a></li>
-			</ul>
-		</div>
-		
-		<!-- middle content, groups display -->
-		<div id="middleContent">
-			<div id="first">looking for jfasfkljasdklfjaskldj ;ljfadsk;lfjkladslhj sdlfjadskfjaskj </div>
-			<div id="second">sdfaskldjfklaj asdkjfadskj adsfkjdslakjj adsfjasdlkj;lkj </div>
-			<div id="third">afajldsfhladskjh  dkjsfhadskljhf lkshdflkjasdh hljhkjh</div>
-		</div>
-		
-		<!-- side content/ newsfeed -->
-		<div id="sideContent">
-			<div id="nf1">kjdfadskl kjsadlfk sdklj</div>
-			<div id="nf2">dsjfhadskjfh flakjdshfjlkash</div>
-			<div id="nf3">adsjfhasl adskjfhasdlkjh</div>
+		<div id=container>
+			<div id=header>
+				<div id=logo>
+					<img src="images/logo.jpg" height = "100px">
+				</div>
+				<div id=login>
+					<form action="index.php" method="post">
+						Username: <input type="text" name="username"/>
+						Password: <input type="password" name="password"/>
+						<input type="submit" value="Log in" /> 
+					</form>
+					<p> Haven't registered yet? You can <a href = "sign_up.php"> sign up now!</a></p>
+				</div>
+			</div>
+			<div id="mainbody" align="center">
+				<img src = "images/index_image.jpg" width = "1200px">
+			</div>
 		</div>
 	</body>
-		
 </html>
+

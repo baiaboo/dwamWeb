@@ -1,19 +1,14 @@
-<html>
-	<head>
-		<title>Php Trial</title>
-	</head>
-	<body>
-		<h1>Classes</h1>
-		<h2>Users</h2>
-		<?php
-		require 'db.php';
-		error_reporting(E_ALL);
-		$query = "SELECT * FROM groups";
-		$result = mysql_query($query);
-		while ($row = mysql_fetch_array($result)) {
-			echo $row['location'];
-			echo '<br>';
-		}		
-		?>
-	</body>
-</html>
+<?php
+$query = "SELECT * FROM UserAndClasses WHERE username='$username'";
+$result = mysql_query($result) or die(mysql_error());
+if (mysql_num_rows($result)<1){
+	error("oh no!!");
+}else{
+	echo "fuck yeah!";
+}
+while ($row = mysql_fetch_array($result)){
+	$class = $row['class'];
+	echo "<li><a href='#'>$class</a></li>";
+
+}
+?>
