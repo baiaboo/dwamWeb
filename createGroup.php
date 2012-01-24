@@ -26,17 +26,21 @@ if (isset($_POST['class'])) {
 
 <html>
 	<head>
-		<link href="calender/calender.css" rel="stylesheet" type="text/css">
-		<script src="calender/calender.js" language="javascript"></script>
+		<script type="text/javascript">
+		function clearMe(formfield) {
+			if(formfield.value == formfield.defaultValue){
+				formfield.value = '';
+			}
+		}
+		function populateMe(formfield) {
+			if(formfield.value == ''){
+				formfield.value=formfield.defaultValue;}
+		}
+		</script>
 	</head>
 	<body>
 		<h3>Create Your Group!</h3>
 		<form action="createGroup.php" method="post">
-			<script type="text/javascript">
-			function clearMe(formfield) {formfield.value = "";}
-			function populateDate(formfield) {formfield.value="MM/DD/YY";}
-			function populateTime(formfield) {formfield.value="Ex: 5 pm, 5:15 am";}
-			</script>
 			Class: <input type="text" name="class"></input><br />
 			Type of group: <select name = "type">
 				<option value = "pset">Pset Group</option>
@@ -45,9 +49,9 @@ if (isset($_POST['class'])) {
 				<option value = "other">Other</option>
 			</select><br />
  			Location: <input type="text" name="location"></input><br />
-			Date: <input type="date" name="date" value ="MM/DD/YY" onfocus="clearMe(this)" onblur="populateDate(this)"/><br />
-			Start Time: <input type="time" name"timeStart" value = "Ex: 5 pm, 5:15 am" onfocus="clearMe(this)" onblur="populateTime(this)" /><br />
-			End Time: <input type="time" name="timeEnd" value = "Ex: 5 pm, 5:15 am" onfocus="clearMe(this)" onblur="populateTime(this)"/><br />
+			Date: <input type="date" name="date" value ="MM/DD/YY" onfocus="clearMe(this)" onblur="populateMe(this)"/><br />
+			Start Time: <input type="time" name"timeStart" value = "HH:MM" onfocus="clearMe(this)" onblur="populateMe(this)" /><br />
+			End Time: <input type="time" name="timeEnd" value = "HH:MM" onfocus="clearMe(this)" onblur="populateMe(this)"/><br />
 			Description: <input type="text" name="description"></input><br />
 			Members: <input type="text" name="members" /><br />			
 			<input type="submit" value="Create Group" />
