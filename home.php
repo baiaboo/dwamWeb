@@ -33,6 +33,19 @@ $username = $_SESSION['username'];
 				<ul>
 					
 <?php
+// helper function here:
+if (isset($_GET['run'])) $linkchoice=$_GET['run'];
+else $linkchoice='';
+
+switch($linkchoice){
+
+case 'first' :
+    createMiddleContent($_GET['arg']);
+    break;
+
+}
+
+
 $query = "SELECT * FROM UserAndClasses WHERE username='$username'";
 $result = mysql_query($query) or die(mysql_error());
 if (mysql_num_rows($result)<1){
@@ -40,7 +53,7 @@ if (mysql_num_rows($result)<1){
 }
 while ($row = mysql_fetch_array($result)){
 	$class = $row['class'];
-	echo "<li><a href='".createMiddleContent($class)."'>$class</a></li>";
+	echo "<li><a href='?run=first&arg=$class'>$class</a></li>";
 
 }
 ?>

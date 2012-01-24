@@ -34,9 +34,7 @@ if (isset($_POST['username'])){
 		$_SESSION['username']=$username;
 		header('location: home.php');
 	}else{
-		echo "oh no!!";
-		echo "u typed $password but in reality it is $passwordFromQuery";
-	}
+		error("Your username password combination is not valid. Please try again!!");	}
 }
 
 ?>
