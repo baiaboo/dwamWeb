@@ -26,6 +26,7 @@ if (isset($_POST['class'])) {
 
 <html>
 	<head>
+    	<link rel="stylesheet" type="text/css" href="createGroup_style.css" />
 		<script type="text/javascript">
 		function clearMe(formfield) {
 			if(formfield.value == formfield.defaultValue){
@@ -39,22 +40,63 @@ if (isset($_POST['class'])) {
 		</script>
 	</head>
 	<body>
-		<h3>Create Your Group!</h3>
-		<form action="createGroup.php" method="post">
-			Class: <input type="text" name="class"></input><br />
-			Type of group: <select name = "type">
-				<option value = "pset">Pset Group</option>
-				<option value = "project">Project Group</option>
-				<option value = "study">Study Group</option>
-				<option value = "other">Other</option>
-			</select><br />
- 			Location: <input type="text" name="location"></input><br />
-			Date: <input type="date" name="date" value ="MM/DD/YY" onfocus="clearMe(this)" onblur="populateMe(this)"/><br />
-			Start Time: <input type="time" name"timeStart" value = "HH:MM" onfocus="clearMe(this)" onblur="populateMe(this)" /><br />
-			End Time: <input type="time" name="timeEnd" value = "HH:MM" onfocus="clearMe(this)" onblur="populateMe(this)"/><br />
-			Description: <input type="text" name="description"></input><br />
-			Members: <input type="text" name="members" /><br />			
-			<input type="submit" value="Create Group" />
-		</form>
+    	<div id="container">
+			<div id="topBanner">
+				<img src="images/Masthead.jpg" width="1000" height="90">
+				<div id="bannerLinks"><p>Welcome, <?=$username?> | <a href="#"> Log Out</a></p></div>
+			</div>
+			<div id="navigationbar">
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="createGroup.php">Create a group</a></li>
+				<li><a href="#">My Groups</a></li>
+				<li><a href="#">Find friends</a></li>
+			</ul> 
+			</div>
+        
+			<h1>Create Your Group</h1>
+        
+			<form class="form" action="createGroup.php" method="post">
+        		<p class="class">
+					<label for="class">Class</label>
+					<input type="text" name="class"></input></p><br />
+             
+            	<p class="type">
+            		<label for="type" >Type of group</label>
+                	<select name = "type">
+					<option value = "pset">Pset Group</option>
+					<option value = "project">Project Group</option>
+					<option value = "study">Study Group</option>
+					<option value = "other">Other</option>
+					</select></p><br />
+            
+            	<p class="location">
+            		<label for="location" >Location</label>
+ 					<input type="text" name="location"></input></p><br />
+             
+            	<p class="date">
+            		<label for="date" >Date</label>
+					<input type="date" name="date" value ="MM/DD/YY" onFocus="clearMe(this)" onBlur="populateMe(this)"/></p><br />
+                
+            	<p class="timeStart">
+            		<label for="timeStart" >Start Time</label>
+					<input type="time" name"timeStart" value = "HH:MM" onFocus="clearMe(this)" onBlur="populateMe(this)" /></p><br />
+                
+            	<p class="timeEnd">
+            		<label for="timeEnd" >End Time</label>
+					<input type="time" name="timeEnd" value = "HH:MM" onFocus="clearMe(this)" onBlur="populateMe(this)"/></p><br />
+                
+            	<p class="description">
+            		<label for="description" >Description</label>  
+                	<textarea name="description"></textarea></p><br />
+             
+            	<p class="members">
+             		<label for="members" >Number of Members</label>
+                	<input type="text" name="members" /></p><br />	
+             			
+				<p class="submit">
+            		<input type="submit" value="Create Group" /></p>
+			</form>
+        </div>
 	</body>
 </html>

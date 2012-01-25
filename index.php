@@ -38,12 +38,38 @@ if (isset($_POST['username'])){
 }
 
 ?>
+
+<?php
+
+require '../src/facebook.php';
+
+$facebook = new Facebook(array(
+  'appId'  => '312594408777411',
+  'secret' => 'b68a4f0bf9e84747f51ad0f8c6e189e1',
+));
+
+// See if there is a user from a cookie
+$user = $facebook->getUser();
+
+if ($user) {
+  try {
+    // Proceed knowing you have a logged in user who's authenticated.
+    $user_profile = $facebook->api('/me');
+  } catch (FacebookApiException $e) {
+    echo '<pre>'.htmlspecialchars(print_r($e, true)).'</pre>';
+    $user = null;
+  }
+}
+
+?>
+
 <html>
 	<head>
 		<title> DWAM: Don't Work Alone @ MIT </title>
 		<link rel="stylesheet" type="text/css" href="index_style.css" />
 	</head>
 	<body>
+    
 		<div id=container>
 			<div id=header>
 				<div id=logo>

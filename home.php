@@ -17,9 +17,9 @@ $username = $_SESSION['username'];
 	<body>
 		<div id="container">
 			<div id="topBanner">
-				<img src="images/Masthead.jpg" width="1000" height="90">
-				<div id="bannerLinks"><p>Welcome, <?=$username?> | <a href="#"> Log Out</a></p></div>
-			</div>
+				<img src="images/Masthead.jpg" width="1000" height="146">
+		<div id="bannerLinks"><p>Welcome, <?=$username?> | <a href="#"> Log Out</a></p></div>
+		  </div>
 			<div id="navigationbar">
 			<ul>
 				<li><a href="#">Home</a></li>
@@ -58,7 +58,7 @@ while ($row = mysql_fetch_array($result)){
 }
 ?>
 	
-				</ul>
+			  </ul>
 			</div>
 			
 			<!-- side content/ newsfeed -->

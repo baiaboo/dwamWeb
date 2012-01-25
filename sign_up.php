@@ -57,24 +57,50 @@ if (isset($_POST['username'])) {
 
 <html>
 
-	<head></head>
+	<head>
+    <link rel="stylesheet" type="text/css" href="sign_up_style.css" />
+    </head>
 
 	<body>
-		<p>Welcome to "dwam"!! Please choose a Username and Password :) </p>
+    	<div id="container">
+        	<div id="topBanner">
+				<img src="images/Masthead.jpg" width="1000" height="90">
+				<div id="bannerLinks"><p>Welcome, <?=$username?> | <a href="#"> Log Out</a></p></div>
+			</div>
+	<div id="navigationbar">
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="createGroup.php">Create a group</a></li>
+				<li><a href="#">My Groups</a></li>
+				<li><a href="#">Find friends</a></li>
+			</ul> 
+			</div>
+            
+			<h1>Welcome to DWAM!</h1>
+            <h2>Please choose a Username and Password.</h2>
 
-		<form action="sign_up.php" method="post">
+		<form class="form" action="sing_up.php" method="post">
+        	<p class="username">
+					<label for="username">Username</label>
+					<input type="text" name="username"></input></p><br />
+                    
+            <p class="password">
+					<label for="class">Password</label>
+					<input type="password" name="class"></input></p><br />
+            
+            <p class="addClass">
+					<label for="addClass">Add a Class</label>
+					<input type="text" name="class1"></input></p><br />
+            
+            <p class="addclass">
+					<label for="class">Add a Class</label>
+					<input type="text" name="class2"></input></p><br />
 
-			Username: <input type="text" name="username"></input><br />
-
-			Password: <input type="password" name="password"></input><br />
-
-			Add Class: <input type="text" name="class1"></input><br />
-
-			Add Class: <input type="text" name="class2"></input><br />
-
-			<input type="submit" />
+			<p class="submit">
+				<input type="submit" /></p>
 
 		</form>
+        </div>
 
 	</body>
 

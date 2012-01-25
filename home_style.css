@@ -1,10 +1,10 @@
 body {
-	background-color:  #C4C4C4;
+	background-color:  #F0F0F0;
 }
 
 p{
-	font-family: 'Helvetica Neue',Helvetica,Arial,Verdana,Geneva,sans-serif;
-	color: white;
+	font-family: Verdana, Tahoma, sans-serif;
+	color: #575855;
 	padding: 3px;
 }
 
@@ -61,7 +61,8 @@ p{
 	font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, Geneva, sans-serif;
 	color: #666666;
 	font-size:1.1em;
-	margin:auto;
+	margin:0px 0px 0px 0px;
+	z-index:1;
 }
 
 #bannerLinks{
@@ -81,10 +82,10 @@ p{
 	padding:0px 0px 0px 0px;
 	margin:0px 0px 0px 0px;
 	width:1000px;
-	height:30px;	
-	background-color:#AEEEEE;
+	height:10px;
 	font-size:1em;
-	font-family:"gill sans";
+	font-family:Verdana, Tahoma, sans-serif;
+	z-index:2;
 }
 
 #navigationbar ul{
@@ -92,28 +93,30 @@ p{
 	margin:0;
 	padding:0;
 	overflow: hidden;
+	z-index:2;
 }
 
 #navigationbar li{
 	float:left;
+	z-index:2;
 }
 
 #navigationbar a:link,a:visited
 {
 	display:block;
 	width:240px;
-	font-weight:bold;
-	color:#FFFFFF;
-	background-color:#6CA6CD;
-	margin: 1px;
+	margin:-10px;
 	text-align:center;
 	padding:4px;
 	text-decoration:none;
-	text-transform:uppercase;
+	text-transform:none;
+	color: #333333;
+	z-index:2;
 }
 
 #navigationbar a:hover,a:active{
-	background-color:#7A991A;
+	background-color:#009900;
+	z-index:1;
 }
 
 #leftContent{
@@ -148,8 +151,7 @@ p{
 #leftContent a:hover, a:active{
 	padding-top: 20px;
 	padding-bottom: 20px;
-	background-color:#607B8B;
-	
+	background-color:#009933;
 }
 
 #middleContent{
